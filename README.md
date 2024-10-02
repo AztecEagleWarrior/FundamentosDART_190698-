@@ -14,6 +14,7 @@ Proyecto de Clase para la Unidad 1 de la Asignatura de Desarrollo Móvil Intregr
 |5|Tipo de Dato Dinámico|5|✅Finalizada|
 |6|Mapas|6|✅Finalizada|
 |7|Listas, Iterables y Conjuntos de Datos|9|✅Finalizada|
+|8|Ex06_Funciones|11|✅Finalizada|
 
 
 
