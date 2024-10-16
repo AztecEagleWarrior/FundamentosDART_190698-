@@ -22,6 +22,8 @@ Proyecto de Clase para la Unidad 1 de la Asignatura de Desarrollo Móvil Intregr
 |13|Clases Abstractas|11|✅Finalizada|
 |14|Mixins|11|✅Finalizada|
 |15|Futures|7|✅Finalizada|
+|16|Async y Await|5|⭐Activa|
+
 
 
 ## LISTA DE HERRAMIENTAS 
