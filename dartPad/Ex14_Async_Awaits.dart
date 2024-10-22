@@ -5,7 +5,9 @@ void main() async {
   try {
     // El bloque try-catch maneja posibles errores que ocurran durante la ejecución.
     
+
     final value = await httpGet('https://adan_salas.com/cursos');
+ main
     // Se realiza una llamada asíncrona a la función httpGet.
     // La palabra clave 'await' hace que el programa espere el resultado de la función antes de continuar.
     // El resultado se almacena en 'value' y luego se imprime.
