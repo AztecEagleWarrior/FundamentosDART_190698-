@@ -6,7 +6,7 @@ void main() async {
   try {
     // Se utiliza el bloque try para intentar ejecutar la solicitud simulada.
 
-    final value = await httpGet('https://aldair-amador.com');
+    final value = await httpGet('https://adan.com');
     // Llama a la función asíncrona httpGet. La palabra clave 'await' asegura que el programa espera la respuesta antes de continuar.
     // El resultado de la llamada se almacena en la variable 'value'.
     
