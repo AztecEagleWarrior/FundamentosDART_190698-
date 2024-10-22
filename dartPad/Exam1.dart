@@ -1,4 +1,4 @@
-//Clase : Adán Salas Galván
+// Clase : Adán Salas Galván
 abstract class PersonBase { 
   String tituloCortesia;
   String nombre;
@@ -12,7 +12,6 @@ abstract class PersonBase {
   DateTime fechaRegistro;
   DateTime fechaActualizacion;
 
- 
   // Constructor de la clase abstracta
   PersonBase({ 
     required this.tituloCortesia,
@@ -28,11 +27,15 @@ abstract class PersonBase {
     required this.fechaActualizacion,
   });
 
-  
   // Método abstracto para mostrar los datos
   String mostrarDatos();
+  
+  // Método para sobreescribir la función cancelar suscripción
+  void cancelarSubscripcion() {
+    estatus = false;
+    print("La subscripción ha sido cancelada.");
+  }
 }
-
 
 // Clase hija Miembro con datos específicos para un miembro
 class Member extends PersonBase {
@@ -40,7 +43,7 @@ class Member extends PersonBase {
   int membresiaId;
   int usuarioId;
 
- // Constructor de la clase hija
+  // Constructor de la clase hija
   Member({ 
     required this.id,
     required this.membresiaId,
@@ -70,16 +73,43 @@ class Member extends PersonBase {
           fechaActualizacion: fechaActualizacion,
         );
 
+  // Sobreescritura de propiedades (getter y setter)
+  @override
+  String get nombre => super.nombre;
 
+  @override
+  set nombre(String value) {
+    super.nombre = value;
+  }
 
+  // CRUD Methods
+  void createMember() {
+    print("Miembro creado con ID: $id");
+  }
 
+  void readMember() {
+    print(mostrarDatos());
+  }
+
+  void updateMember(String nuevoNombre, String nuevoApellido) {
+    this.nombre = nuevoNombre;
+    this.primerApellido = nuevoApellido;
+    this.fechaActualizacion = DateTime.now();
+    print("Miembro actualizado.");
+  }
+
+  void deleteMember() {
+    print("Miembro con ID: $id eliminado.");
+  }
+
+  // Sobreescritura del método mostrarDatos
   @override
   String mostrarDatos() {
     return '''
     ID: $id
     Membresía: $membresiaId
     Usuario: $usuarioId
-    Titulo cortesia: $tituloCortesia
+    Titulo cortesía: $tituloCortesia
     Nombre Completo: $nombre $primerApellido $segundoApellido 
     Fecha de Nacimiento: ${fechaNacimiento.toIso8601String()}
     Fotografía: $fotografia
@@ -92,10 +122,8 @@ class Member extends PersonBase {
   }
 }
 
-
-// Caso 1: Nuevo miembro registrado hoy
-
 void main() {
+  // Caso 1: Nuevo miembro registrado hoy
   Member nuevoMiembro = Member(
     id: 1,
     membresiaId: 1,
@@ -113,9 +141,7 @@ void main() {
     fechaActualizacion: DateTime.now(),
   );
 
-
-// Caso 2: Miembro nuevo que fue empleado del Gym
-
+  // Caso 2: Miembro nuevo que fue empleado del Gym
   Member exEmpleado = Member(  
     id: 2,
     membresiaId: 2,
@@ -133,9 +159,7 @@ void main() {
     fechaActualizacion: DateTime.now(),
   );
 
-
-// Caso 3: Miembro que se da de baja de la cortesía
-
+  // Caso 3: Miembro que se da de baja de la cortesía
   Member dadoDeBaja = Member( 
     id: 3,
     membresiaId: 3,
@@ -148,17 +172,26 @@ void main() {
     fotografia: 'carlos.jpg',
     genero: 'Masculino',
     tipoSangre: 'AB+',
-    estatus: false, 
+    estatus: true, // Activo inicialmente
     fechaRegistro: DateTime.now(),
     fechaActualizacion: DateTime.now(),
   );
 
- 
- // imprimir casos
+  // CRUD Operations y pruebas
+
   print('Caso 1: Nuevo Miembro'); 
-  print(nuevoMiembro.mostrarDatos());
+  nuevoMiembro.createMember();
+  nuevoMiembro.readMember();
+  
   print('\nCaso 2: Ex-empleado que es miembro');
-  print(exEmpleado.mostrarDatos());
+  exEmpleado.createMember();
+  exEmpleado.readMember();
+
   print('\nCaso 3: Miembro dado de baja');
-  print(dadoDeBaja.mostrarDatos());
+  dadoDeBaja.createMember();
+  dadoDeBaja.readMember();
+  
+  print('\nCancelando la suscripción del miembro 3');
+  dadoDeBaja.cancelarSubscripcion();
+  dadoDeBaja.readMember(); // Ver el estado después de cancelar
 }
